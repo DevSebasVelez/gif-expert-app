@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { PropTypes } from 'prop-types';
 
 export const AddCategory = ({ onNewCategory }) => {
 
@@ -11,16 +11,17 @@ export const AddCategory = ({ onNewCategory }) => {
 
 
     const onSubmit = (event) => {
+        // console.log('AVISO PARA TEST: Si se realizo el submit');
         event.preventDefault();                                        //Evita el full refresh del navegador con submit(enter)
         if( inputValue.trim().length <=1 ) return;
 
         // setCategories(categories => [inputValue, ...categories]);
         onNewCategory( inputValue.trim() );                           //Usamos la propiedad -> es una función
-        setInputValue('')
+        setInputValue('')                                             //Con cada enter reinicia el state
     }
 
     return (
-        <form onSubmit={ onSubmit }>
+        <form onSubmit={ onSubmit } aria-label="form">
             <input
                 type="text"
                 placeholder="Buscar Gifs"
@@ -31,3 +32,8 @@ export const AddCategory = ({ onNewCategory }) => {
     )
 }
 
+
+
+AddCategory.propTypes = {
+    onNewCategory: PropTypes.func.isRequired,
+}

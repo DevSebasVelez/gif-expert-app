@@ -10,6 +10,8 @@ export const getGifs = async ( category ) => {
 
     // console.log(data);
 
+
+    //Guardamos cada imagen en un arreglo extrayendo solo las propiedades deseadas
     const gifs = data.map( img => {
       return {
         id: img.id,
